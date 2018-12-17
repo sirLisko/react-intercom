@@ -59,6 +59,7 @@ export default class Intercom extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       appID,
+      passive,
       ...otherProps,
     } = nextProps;
 
@@ -72,7 +73,7 @@ export default class Intercom extends Component {
         window.Intercom('shutdown');
         window.Intercom('boot', otherProps);
       } else {
-        window.Intercom('update', otherProps);
+        !passive && window.Intercom('update', otherProps);
       }
     }
   }
